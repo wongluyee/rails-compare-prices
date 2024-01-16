@@ -14,6 +14,8 @@ class PagesController < ApplicationController
       end
 
       search_amazon(search_term)
+
+      @book = Book.new
     end
   end
 

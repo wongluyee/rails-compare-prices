@@ -22,9 +22,11 @@
           <h5 class="card-title"><%= @title %></h5>
           <p class="card-text"><%= @price %></p>
           <%= link_to 'Amazon Store', @link, target: "_blank", class: "btn btn-primary" %>
-          <a href="#" class="btn btn-primary mt-2">Add to wishlist <i class="fa-solid fa-plus"></i></a>
+          <%= render 'books/new' %>
         </div>
       </div>
     </div>
   <% end %>
+
+  <%= link_to 'Wishlist', books_path, class: "btn btn-primary mt-2" %>
 </div>

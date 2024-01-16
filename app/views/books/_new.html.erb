@@ -1,0 +1,7 @@
+<%= simple_form_for @book do |f| %>
+  <%= f.hidden_field :title, value: @title %>
+  <%= f.hidden_field :link, value: @link %>
+  <%= f.hidden_field :image, value: @image %>
+  <%= f.hidden_field :price, value: @price %>
+  <%= f.button :submit, "Add to wishlist", class: "btn btn-primary mt-2" %>
+<% end %>

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # search_path (simple form)
   get 'search', to: 'pages#search'
+
+  resources :books, only: [:index, :new, :create, :destroy]
 end
