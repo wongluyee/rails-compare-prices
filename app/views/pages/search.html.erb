@@ -1,7 +1,30 @@
-<div class="container">
+<div class="container mb-3">
   <h1>Search page</h1>
+
   <%= simple_form_for search_path, method: :get do |f| %>
-    <%= f.input :query, placeholder: "Search..." %>
-    <%= f.button :submit, "Search", class: "btn btn-primary" %>
+    <div class="row row-cols-lg-auto g-1 mb-2">
+      <div class="col-lg-6">
+          <%= f.input :query, label: false, placeholder: "Search..." %>
+      </div>
+
+      <div class="col-12">
+        <%= f.button :submit, "Search", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if params["/search"].present? %>
+    <div class="amazon">
+      <h5>Amazon</h5>
+      <div class="card" style="width: 14rem;">
+        <%= image_tag @image, alt: @title, class: "card-img-top"%>
+        <div class="card-body">
+          <h5 class="card-title"><%= @title %></h5>
+          <p class="card-text"><%= @price %></p>
+          <%= link_to 'Amazon Store', @link, target: "_blank", class: "btn btn-primary" %>
+          <a href="#" class="btn btn-primary mt-2">Add to wishlist <i class="fa-solid fa-plus"></i></a>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
