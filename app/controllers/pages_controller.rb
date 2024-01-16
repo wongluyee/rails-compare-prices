@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     @image = json_response[0]['search_results'][0]['image']
     @price = json_response[0]['search_results'][0]['price']['raw']
 
-    # For view testing purpose (200 requests per month)
+    # For view testing purpose (Free plan - 200 requests per month)
     # @title = "Eloquent JavaScript"
     # @link = "https://www.amazon.co.jp/Eloquent-JavaScript-3rd-Introduction-Programming-ebook/dp/B07C96Q217/ref=sr_1_1?keywords=eloquent+javascript+kindle&qid=1705379361&sr=8-1"
     # @image = "https://m.media-amazon.com/images/I/81HqVRRwp3L._AC_UL320_.jpg"
