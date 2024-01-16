@@ -1,3 +1,7 @@
 <div class="container">
   <h1>Search page</h1>
+  <%= simple_form_for search_path, method: :get do |f| %>
+    <%= f.input :query, placeholder: "Search..." %>
+    <%= f.button :submit, "Search", class: "btn btn-primary" %>
+  <% end %>
 </div>
