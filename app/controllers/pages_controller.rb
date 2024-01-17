@@ -15,6 +15,7 @@ class PagesController < ApplicationController
 
       search_amazon(search_term)
 
+      # To add new book into wishlist
       @book = Book.new
     end
   end
@@ -32,27 +33,27 @@ class PagesController < ApplicationController
   end
 
   def search_amazon(search_term)
-    url = URI("https://api.listingleopard.com/single/search-page?domain=amazon.co.jp&search_term=#{search_term}%20kindle")
+    # url = URI("https://api.listingleopard.com/single/search-page?domain=amazon.co.jp&search_term=#{search_term}%20kindle")
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
+    # http = Net::HTTP.new(url.host, url.port)
+    # http.use_ssl = true
 
-    request = Net::HTTP::Get.new(url)
-    request["accept"] = 'application/json'
-    request["X-api-key"] = "#{ENV['LEOPARD_LISTING_API_KEY']}"
+    # request = Net::HTTP::Get.new(url)
+    # request["accept"] = 'application/json'
+    # request["X-api-key"] = "#{ENV['LEOPARD_LISTING_API_KEY']}"
 
-    response = http.request(request)
-    json_response = JSON.parse(response.read_body)
+    # response = http.request(request)
+    # json_response = JSON.parse(response.read_body)
 
-    @title = json_response[0]['search_results'][0]['title']
-    @link = json_response[0]['search_results'][0]['link']
-    @image = json_response[0]['search_results'][0]['image']
-    @price = json_response[0]['search_results'][0]['price']['raw']
+    # @title = json_response[0]['search_results'][0]['title']
+    # @link = json_response[0]['search_results'][0]['link']
+    # @image = json_response[0]['search_results'][0]['image']
+    # @price = json_response[0]['search_results'][0]['price']['raw']
 
     # For view testing purpose (Free plan - 200 requests per month)
-    # @title = "Eloquent JavaScript"
-    # @link = "https://www.amazon.co.jp/Eloquent-JavaScript-3rd-Introduction-Programming-ebook/dp/B07C96Q217/ref=sr_1_1?keywords=eloquent+javascript+kindle&qid=1705379361&sr=8-1"
-    # @image = "https://m.media-amazon.com/images/I/81HqVRRwp3L._AC_UL320_.jpg"
-    # @price = "￥3,200"
+    @title = "Eloquent JavaScript"
+    @link = "https://www.amazon.co.jp/Eloquent-JavaScript-3rd-Introduction-Programming-ebook/dp/B07C96Q217/ref=sr_1_1?keywords=eloquent+javascript+kindle&qid=1705379361&sr=8-1"
+    @image = "https://m.media-amazon.com/images/I/81HqVRRwp3L._AC_UL320_.jpg"
+    @price = "￥3,200"
   end
 end

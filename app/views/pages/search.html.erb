@@ -1,4 +1,4 @@
-<div class="container mb-3">
+<div data-controller="notice" class="container mb-3">
   <h1>Compare Ebooks' Prices</h1>
 
   <%= simple_form_for search_path, method: :get do |f| %>
@@ -22,11 +22,21 @@
           <h5 class="card-title"><%= @title %></h5>
           <p class="card-text"><%= @price %></p>
           <%= link_to 'Amazon Store', @link, target: "_blank", class: "btn btn-primary" %>
-          <%= render 'books/new' %>
+          <div data-action="submit->notice#fire">
+            <%= render 'books/new' %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
 
   <%= link_to 'Wishlist', books_path, class: "btn btn-primary mt-2" %>
+
+  <div data-notice-target="noticeElement" class="flash flash-success alert alert-dismissible fade show d-none" role="alert">
+    <span><strong>Yay!</strong> 🎉 Added to wishlist</span>
+    &nbsp;&nbsp;
+    <a data-bs-dismiss="alert" aria-label="Close" class="close-btn">
+      <i class="fas fa-times"></i>
+    </a>
+  </div>
 </div>

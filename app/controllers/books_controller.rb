@@ -10,9 +10,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path, notice: "Added to wishlist"
+      render json: { status: :true }
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, status: :unprocessable_entity, alert: "Failed to add to wishlist"
     end
   end
 
