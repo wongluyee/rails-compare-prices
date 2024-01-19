@@ -16,21 +16,23 @@
   <% if params["/search"].present? %>
     <div class="amazon">
       <h5>Amazon</h5>
-      <div class="card" style="width: 14rem;">
-        <%= image_tag @image, alt: @title, class: "card-img-top"%>
+      <% @amazon_search_results.each do |book| %>
+      <div class="card mb-3" style="width: 14rem;">
+        <%= image_tag book[:image], alt: book[:title], class: "card-img-top"%>
         <div class="card-body">
-          <h5 class="card-title"><%= @title %></h5>
-          <p class="card-text"><%= @price %></p>
-          <%= link_to 'Amazon Store', @link, target: "_blank", class: "btn btn-primary" %>
+          <h5 class="card-title"><%= book[:title] %></h5>
+          <p class="card-text"><%= book[:price] %></p>
+          <%= link_to 'Amazon Store', book[:link], target: "_blank", class: "btn btn-primary" %>
           <div data-action="submit->notice#fire">
             <%= render 'books/new' %>
           </div>
         </div>
       </div>
+      <% end %>
     </div>
   <% end %>
 
-  <%= link_to 'Wishlist', books_path, class: "btn btn-primary mt-2" %>
+  <%= link_to 'Wishlist', books_path, class: "btn btn-primary" %>
 
   <div data-notice-target="noticeElement" class="flash flash-success alert alert-dismissible fade show d-none" role="alert">
     <span><strong>Yay!</strong> 🎉 Added to wishlist</span>
