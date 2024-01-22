@@ -1,17 +1,23 @@
-<div data-controller="notice" class="container mb-3">
+<div data-controller="notice" class="container my-3">
   <h1>Compare Ebooks' Prices</h1>
 
-  <%= simple_form_for search_path, method: :get do |f| %>
-    <div class="row row-cols-lg-auto g-1 mb-2">
-      <div class="col-lg-6">
-          <%= f.input :query, label: false, placeholder: "Search..." %>
-      </div>
+  <div data-controller="spinner">
+    <%= simple_form_for search_path, method: :get do |f| %>
+      <div class="row row-cols-lg-auto g-1">
+        <div class="col-lg-6">
+            <%= f.input :query, label: false, placeholder: "Search..." %>
+        </div>
 
-      <div class="col-12">
-        <%= f.button :submit, "Search", class: "btn btn-primary" %>
+        <div class="col-12">
+          <%= f.button :submit, "Search", class: "btn btn-primary", data:{ action:"click->spinner#showSpinner" } %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+    <div data-spinner-target="spinner" class="spinner-border text-primary my-3 d-none" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div><br>
+  </div>
 
   <% if params["/search"].present? %>
     <div class="amazon">

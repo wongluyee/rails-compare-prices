@@ -46,8 +46,8 @@ SimpleForm.setup do |config|
 
   # vertical forms
   #
-  # vertical default_wrapper
-  config.wrappers :vertical_form, class: 'mb-3' do |b|
+  # vertical default_wrapper (Note: removed mb-3 on 2024-01-22)
+  config.wrappers :vertical_form, class: '' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
