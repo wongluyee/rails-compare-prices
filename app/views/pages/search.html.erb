@@ -30,7 +30,7 @@
           <p class="card-text"><%= book[:price] %></p>
           <%= link_to 'Amazon Store', book[:link], target: "_blank", class: "btn btn-primary" %>
           <div data-action="submit->notice#fire">
-            <%= render 'books/new' %>
+            <%= render 'books/new', book: book %>
           </div>
         </div>
       </div>
