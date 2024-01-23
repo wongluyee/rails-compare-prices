@@ -34,11 +34,11 @@ class PagesController < ApplicationController
   def search_amazon(search_term)
     url = URI("https://api.listingleopard.com/single/search-page?domain=amazon.co.jp&search_term=#{search_term}%20kindle")
     api_key = (ENV['LEOPARD_LISTING_API_KEY']).to_s
-    send_request(url, api_key)
+    json_response = send_request(url, api_key)
 
-    first_book = amazon_book_hash(0)
-    second_book = amazon_book_hash(1)
-    third_book = amazon_book_hash(2)
+    @amazon_search_results = (0..2).map do |index|
+      amazon_book_hash(json_response, index)
+    end
 
     # For view testing purpose (Free plan - 200 requests per month)
     # first_book = {
@@ -63,7 +63,7 @@ class PagesController < ApplicationController
     # # To test spinner
     # sleep 3
 
-    @amazon_search_results = [first_book, second_book, third_book]
+    # @amazon_search_results = [first_book, second_book, third_book]
   end
 
   def send_request(url, api_key)
@@ -79,7 +79,7 @@ class PagesController < ApplicationController
     JSON.parse(response.read_body)
   end
 
-  def amazon_book_hash(index)
+  def amazon_book_hash(json_response, index)
     {
       title: json_response[0]['search_results'][index]['title'],
       link: json_response[0]['search_results'][index]['link'],
