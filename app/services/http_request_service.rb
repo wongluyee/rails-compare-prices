@@ -1,5 +1,5 @@
 class HttpRequestService < ApplicationService
-  def initialize(url, api_key)
+  def initialize(url, api_key = '')
     @url = url
     @api_key = api_key
   end
