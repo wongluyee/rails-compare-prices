@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class AmazonSearchService < ApplicationService
   def initialize(search_term)
     @search_term = search_term
@@ -12,7 +15,7 @@ class AmazonSearchService < ApplicationService
       amazon_book_hash(json_response, index)
     end
 
-    return amazon_search_results
+    amazon_search_results
   end
 
   private
@@ -20,10 +23,27 @@ class AmazonSearchService < ApplicationService
   def amazon_book_hash(json_response, index)
     {
       title: json_response[0]['search_results'][index]['title'],
-      author: json_response[0]['search_results'][index]['author'],
+      author: scrape_author(json_response[0]['search_results'][index]['link']),
       link: json_response[0]['search_results'][index]['link'],
       image: json_response[0]['search_results'][index]['image'],
       price: json_response[0]['search_results'][index]['price']['raw']
     }
+  end
+
+  def scrape_author(link)
+    attempts = 0
+    begin
+      url = link
+
+      html_file = URI.open(url).read
+      html_doc = Nokogiri::HTML.parse(html_file)
+
+      author = html_doc.search(".author a").text
+    rescue OpenURI::HTTPError => error
+      puts "Error accessing #{url}: #{error}. Retrying..."
+      attempts += 1
+      retry if attempts < 5
+      puts "Failed to access #{url} after 5 attempts."
+    end
   end
 end

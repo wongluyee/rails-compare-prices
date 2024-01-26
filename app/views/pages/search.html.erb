@@ -27,8 +27,8 @@
         <%= image_tag book[:image], alt: book[:title], class: "card-img-top" %>
         <div class="card-body">
           <h5 class="card-title"><%= book[:title] %></h5>
-          <p class="card-text">Author: <%= book[:author] %></p>
-          <p class="card-text"><%= book[:price] %></p>
+          <p class="card-text">Author: <%= book[:author].empty? ? "N/A" : book[:author] %></p>
+          <p class="card-text"><%= book[:price].empty? ? "¥ 0" : book[:price] %></p>
           <%= link_to "Amazon Store", book[:link], target: "_blank", class: "btn btn-primary" %>
           <div data-action="submit->notice#fire">
             <%= render "books/new", book: book %>
