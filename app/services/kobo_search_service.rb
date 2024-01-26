@@ -10,7 +10,7 @@ class KoboSearchService < ApplicationService
 
     iterate_times = 2
     items_founded = json_response['Items'].count
-    iterate_times = items_founded - 1 if (items_founded < 3)
+    iterate_times = items_founded - 1 if items_founded < 3
 
     kobo_search_results = (0..iterate_times).map do |index|
       kobo_book_hash(json_response, index)

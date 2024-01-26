@@ -20,6 +20,7 @@ class AmazonSearchService < ApplicationService
   def amazon_book_hash(json_response, index)
     {
       title: json_response[0]['search_results'][index]['title'],
+      author: json_response[0]['search_results'][index]['author'],
       link: json_response[0]['search_results'][index]['link'],
       image: json_response[0]['search_results'][index]['image'],
       price: json_response[0]['search_results'][index]['price']['raw']
