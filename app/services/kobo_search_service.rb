@@ -16,7 +16,7 @@ class KoboSearchService < ApplicationService
       kobo_book_hash(json_response, index)
     end
 
-    return kobo_search_results
+    kobo_search_results
   end
 
   private
