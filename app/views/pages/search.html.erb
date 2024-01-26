@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-12">
-          <%= f.button :submit, "Search", class: "btn btn-primary", data:{ action:"click->spinner#showSpinner" } %>
+          <%= f.button :submit, "Search", class: "btn btn-primary", data: { action: "click->spinner#showSpinner" } %>
         </div>
       </div>
     <% end %>
@@ -24,13 +24,14 @@
       <h5>Amazon</h5>
       <% @amazon_search_results.each do |book| %>
       <div class="card mb-3" style="width: 14rem;">
-        <%= image_tag book[:image], alt: book[:title], class: "card-img-top"%>
+        <%= image_tag book[:image], alt: book[:title], class: "card-img-top" %>
         <div class="card-body">
           <h5 class="card-title"><%= book[:title] %></h5>
+          <p class="card-text">Author: <%= book[:author] %></p>
           <p class="card-text"><%= book[:price] %></p>
-          <%= link_to 'Amazon Store', book[:link], target: "_blank", class: "btn btn-primary" %>
+          <%= link_to "Amazon Store", book[:link], target: "_blank", class: "btn btn-primary" %>
           <div data-action="submit->notice#fire">
-            <%= render 'books/new', book: book %>
+            <%= render "books/new", book: book %>
           </div>
         </div>
       </div>
@@ -38,7 +39,7 @@
     </div>
   <% end %>
 
-  <%= link_to 'Wishlist', books_path, class: "btn btn-primary" %>
+  <%= link_to "Wishlist", books_path, class: "btn btn-primary" %>
 
   <div data-notice-target="noticeElement" class="flash flash-success alert alert-dismissible fade show d-none" role="alert">
     <span><strong>Yay!</strong> 🎉 Added to wishlist</span>
