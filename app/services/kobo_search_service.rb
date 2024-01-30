@@ -9,11 +9,13 @@ class KoboSearchService < ApplicationService
     json_response = HttpRequestService.call(url)
 
     iterate_times = 2
-    items_founded = json_response['Items'].count
-    iterate_times = items_founded - 1 if items_founded < 3
+    items_founded = json_response['Items'].nil? ? 0 : json_response['Items'].count
+    iterate_times = items_founded - 1 if items_founded < 3 && items_founded > 0
 
-    kobo_search_results = (0..iterate_times).map do |index|
-      kobo_book_hash(json_response, index)
+    if items_founded > 0
+      kobo_search_results = (0..iterate_times).map do |index|
+        kobo_book_hash(json_response, index)
+      end
     end
 
     kobo_search_results
