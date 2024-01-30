@@ -6,14 +6,12 @@ export default class extends Controller {
 
   connect() {
     console.log("Spinner controller connected")
-
-    const params = new URLSearchParams(window.location.search)
-    if (params.toString() === '') {
-        this.spinnerTarget.classList.add("d-none")
-    }
+    this.spinnerTarget.classList.add("d-none")
+    console.log("do not show spinner")
   }
 
   showSpinner(){
     this.spinnerTarget.classList.remove("d-none")
+    console.log("show spinner")
   }
 }
