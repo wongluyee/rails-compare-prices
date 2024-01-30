@@ -19,7 +19,7 @@
     </div><br>
   </div>
 
-  <% if params["/search"].present? %>
+  <% if @query.present? %>
     <div class="amazon">
       <h5>Amazon</h5>
       <% @amazon_search_results.each do |book| %>

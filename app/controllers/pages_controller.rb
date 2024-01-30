@@ -5,18 +5,24 @@ require 'cgi'
 
 class PagesController < ApplicationController
   def search
-    return unless params['/search'].present?
+    return if params['/search'].nil?
+    @query = params['/search'][:query]
+
+    if @query.blank?
+      flash[:alert] = "Please enter a search term."
+      redirect_to root_path and return
+    end
 
     # Get user's input
-    search_term = params['/search'][:query].strip.gsub(' ', '%20')
+    search_term = @query.strip.gsub(' ', '%20')
     search_term = encode_search_term(search_term) if contains_japanese_or_chinese?(search_term)
 
     # Testing purpose
     @amazon_search_results = search_amazon(search_term)
 
     # @amazon_search_results = AmazonSearchService.call(search_term)
-    # # To add new book into wishlist we need to convert hash to book's instance
-    # # So that book instance can be use by simple form
+    # To add new book into wishlist we need to convert hash to book's instance
+    # So that book instance can be use by simple form
     @amazon_search_results.each do |book|
       @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
     end
