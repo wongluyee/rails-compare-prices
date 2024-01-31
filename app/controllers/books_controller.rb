@@ -13,13 +13,13 @@ class BooksController < ApplicationController
     if @book.save
       render json: { status: :true }
     else
-      redirect_to root_path, status: :unprocessable_entity, alert: "Failed to add to wishlist"
+      redirect_to books_path, status: :unprocessable_entity, alert: "Failed to add to wishlist"
     end
   end
 
   private
 
   def book_params
-     params.require(:book).permit(:title, :link, :image, :price)
+     params.require(:book).permit(:title, :author, :link, :image, :price)
   end
 end
