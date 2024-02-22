@@ -33,6 +33,11 @@ class PagesController < ApplicationController
         @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
       end
     end
+
+    @google_search_results = GoogleSearchService.call(search_term)
+    @google_search_results.each do |book|
+      @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
+    end
   end
 
   private
