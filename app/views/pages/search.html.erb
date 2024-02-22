@@ -46,7 +46,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= book[:title] %></h5>
                 <p class="card-text">Author: <%= book[:author].empty? ? "N/A" : book[:author] %></p>
-                <p class="card-text"><%= book[:price].to_s.empty? ? "¥ 0" : number_to_currency(book[:price], {unit: '¥', precision: 0}) %></p>
+                <p class="card-text"><%= book[:price].to_s.empty? ? "¥ 0" : number_to_currency(book[:price], { unit: "¥", precision: 0 }) %></p>
                 <%= link_to "Kobo Store", book[:link], target: "_blank", class: "btn btn-primary" %>
                 <div data-action="submit->notice#fire">
                   <%= render "books/new", book: book %>
@@ -54,6 +54,23 @@
               </div>
             </div>
           <% end %>
+        <% end %>
+      </div>
+      <div class="google">
+        <h5>Google</h5>
+        <% @google_search_results.each do |book| %>
+          <div class="card mb-3" style="width: 14rem;">
+            <%= image_tag book[:image], alt: book[:title], class: "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= book[:title] %></h5>
+              <p class="card-text">Author: <%= book[:author].empty? ? "N/A" : book[:author] %></p>
+              <p class="card-text"><%= book[:price].empty? ? "¥ 0" : book[:price] %></p>
+              <%= link_to "Google Play Books", book[:link], target: "_blank", class: "btn btn-primary" %>
+              <div data-action="submit->notice#fire">
+                <%= render "books/new", book: book %>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
