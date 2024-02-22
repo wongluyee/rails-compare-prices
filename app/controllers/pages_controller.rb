@@ -27,9 +27,11 @@ class PagesController < ApplicationController
       @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
     end
 
-    @kobo_search_results = KoboSearchService.call(search_term) || []
-    @kobo_search_results.each do |book|
-      @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
+    @kobo_search_results = KoboSearchService.call(search_term)
+    unless @kobo_search_results.nil?
+      @kobo_search_results.each do |book|
+        @book = Book.new(title: book[:title], author: book[:author], link: book[:link], image: book[:image], price: book[:price])
+      end
     end
 
     @google_search_results = GoogleSearchService.call(search_term)
