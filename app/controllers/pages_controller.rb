@@ -18,9 +18,9 @@ class PagesController < ApplicationController
     search_term = encode_search_term(search_term) if contains_japanese_or_chinese?(search_term)
 
     # Testing purpose
-    @amazon_search_results = search_amazon(search_term)
+    # @amazon_search_results = search_amazon(search_term)
 
-    # @amazon_search_results = AmazonSearchService.call(search_term)
+    @amazon_search_results = AmazonSearchService.call(search_term)
     # To add new book into wishlist we need to convert hash to book's instance
     # So that book instance can be use by simple form
     @amazon_search_results.each do |book|
