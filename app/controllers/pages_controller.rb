@@ -13,7 +13,7 @@ class PagesController < ApplicationController
       redirect_to root_path and return
     end
 
-    # Get user's input
+    # Get user's input, replace spaces, encode search term if it contains JP or CN characters
     search_term = @query.strip.gsub(' ', '%20')
     search_term = encode_search_term(search_term) if contains_japanese_or_chinese?(search_term)
 
