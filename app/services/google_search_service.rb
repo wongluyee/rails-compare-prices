@@ -23,7 +23,8 @@ class GoogleSearchService < ApplicationService
       author: json_response["organic_results"][0]['items'][index]['author'],
       link: json_response["organic_results"][0]['items'][index]['link'],
       image: json_response["organic_results"][0]['items'][index]['thumbnail'],
-      price: json_response["organic_results"][0]['items'][index]['price']
+      price: json_response["organic_results"][0]['items'][index]['price'],
+      store: "Google Play Books"
     }
   end
 end

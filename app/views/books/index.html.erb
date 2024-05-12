@@ -7,6 +7,15 @@
       <div class="card-product">
         <%= image_tag book.image, alt: book.title %>
         <div class="card-product-infos">
+          <% if book.store === "Amazon" %>
+            <span class="badge rounded-pill text-bg-warning mb-2">Amazon</span>
+          <% end %>
+          <% if book.store === "Rakuten Kobo" %>
+            <span class="badge rounded-pill text-bg-danger mb-2">Rakuten Kobo</span>
+          <% end %>
+          <% if book.store === "Google Play Books" %>
+            <span class="badge rounded-pill text-bg-primary mb-2">Google Play Books</span>
+          <% end %>
           <h2><%= book.title %></h2>
           <p><%= book.price %></p>
           <%= link_to "Go to store", book.link, target: "_blank", class: "btn btn-primary btn-sm" %>
