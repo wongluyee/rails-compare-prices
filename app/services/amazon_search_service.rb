@@ -26,7 +26,8 @@ class AmazonSearchService < ApplicationService
       author: scrape_author(json_response[0]['search_results'][index]['link']),
       link: json_response[0]['search_results'][index]['link'],
       image: json_response[0]['search_results'][index]['image'],
-      price: json_response[0]['search_results'][index]['price']['raw']
+      price: json_response[0]['search_results'][index]['price']['raw'],
+      store: "Amazon"
     }
   end
 
@@ -45,5 +46,6 @@ class AmazonSearchService < ApplicationService
       retry if attempts < 5
       puts "Failed to access #{url} after 5 attempts."
     end
+    author
   end
 end

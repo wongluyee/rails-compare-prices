@@ -29,7 +29,8 @@ class KoboSearchService < ApplicationService
       author: json_response["Items"][index]['Item']['author'],
       link: json_response["Items"][index]['Item']['itemUrl'],
       image: json_response["Items"][index]['Item']['largeImageUrl'],
-      price: json_response["Items"][index]['Item']['itemPrice']
+      price: json_response["Items"][index]['Item']['itemPrice'],
+      store: "Rakuten Kobo"
     }
   end
 end
