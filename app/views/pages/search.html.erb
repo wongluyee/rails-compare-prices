@@ -44,7 +44,12 @@
               <div class="card-body">
                 <h5 class="card-title"><%= book[:title] %></h5>
                 <p class="card-text">Author: <%= book[:author].empty? ? "N/A" : book[:author] %></p>
-                <p class="card-text"><%= book[:price].to_s.empty? ? "¥ 0" : number_to_currency(book[:price], { unit: "¥", precision: 0 }) %></p>
+                <% if book[:price].to_s.empty? %>
+                  <% book[:price] = "¥ 0" %>
+                <% else %>
+                  <% book[:price] = number_to_currency(book[:price], { unit: "¥", precision: 0 }) %>
+                <% end %>
+                <p class="card-text"><%= book[:price] %></p>
                 <%= link_to "Kobo Store", book[:link], target: "_blank", class: "btn btn-primary" %>
                 <%= render "books/new", book: book %>
               </div>
