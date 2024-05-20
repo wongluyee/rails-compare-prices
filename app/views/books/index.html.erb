@@ -17,6 +17,7 @@
             <span class="badge rounded-pill text-bg-primary mb-2">Google Play Books</span>
           <% end %>
           <h2><%= book.title %></h2>
+          <p>Author: <%= book.author %></p>
           <p><%= book.price %></p>
           <%= link_to "Go to store", book.link, target: "_blank", class: "btn btn-primary btn-sm" %>
           <%= link_to book_path(book), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" do %>
